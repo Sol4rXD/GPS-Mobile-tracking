@@ -7,12 +7,10 @@ import threading
 import serial
 import time
 
-lat_point2, lon_point2 = 34.0522, -118.2437
-
-# Set serial port 1
-PORT_NAME_1 = "COM13"
-# Set serial port 2
-PORT_NAME_2 = "COM4"
+# Set serial port 1 (BLUEPILL BNO)
+PORT_NAME_1 = "/dev/ttyACM0"
+# Set serial port 2 (BLUEPILL LORA)
+PORT_NAME_2 = "/dev/ttyACM1" 
 # Set Baudrate
 BAUDRATE = 9600
 
@@ -80,7 +78,7 @@ def read_serial_data():
             data_lon.append(float(data1[1]))
             data_yaw.append(float(data1[3]))
 
-        if len(data2) >= 2:
+        if len(data2) >= 7:
             data_lat_1.append(float(data2[0]))
             data_lon_1.append(float(data2[1]))
     ser.close()
